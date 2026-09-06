@@ -103,8 +103,8 @@
     banniere.setAttribute("aria-label", "Gestion des traceurs");
     banniere.innerHTML =
       '<div class="in">' +
-      "<p><strong>Cookies et traceurs</strong>" +
-      "Nous utilisons un traceur publicitaire pour mesurer la performance de nos campagnes sur Facebook et Instagram. " +
+      "<p><strong>Cookies</strong>" +
+      "Nous utilisons un cookie à des fins de mesures statistiques. " +
       "Il n'est déposé qu'avec ton accord. Le refus n'a aucune conséquence sur ta navigation ni sur ta demande. " +
       'En savoir plus dans la <a href="/confidentialite">politique de confidentialité</a>.</p>' +
       '<div class="act">' +
