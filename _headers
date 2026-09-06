@@ -1,22 +1,26 @@
 # Règles de cache — ob-lepuy.fr
-# Fichier lu automatiquement par Cloudflare Pages. À déposer à la racine du dépôt.
+# Fichier lu automatiquement par Cloudflare Pages, à déposer à la racine du dépôt.
 #
-# IMPORTANT : l'ordre compte. Les règles les plus spécifiques doivent figurer
-# AVANT la règle générale /*, sinon cette dernière les neutralise et Cloudflare
-# applique ses valeurs par défaut (notamment max-age=14400 sur les fichiers .js).
-
-# ------------------------------------------------------------------- API
-# La réponse du formulaire ne doit jamais être mise en cache.
-/api/*
-  Cache-Control: no-store
-  X-Content-Type-Options: nosniff
+# Deux points à connaître avant de modifier ce fichier :
+#
+# 1. Cloudflare ne résout pas les conflits par spécificité de chemin : quand une
+#    requête correspond à plusieurs règles, les valeurs sont cumulées. Un en-tête
+#    déclaré à la fois ici et dans le bloc /* apparaîtrait donc en double dans la
+#    réponse. Chaque en-tête n'est donc défini qu'à un seul endroit.
+#
+# 2. Ce fichier ne suffit pas seul : le réglage Browser Cache TTL de la zone
+#    (Caching > Configuration) doit être sur « Respect Existing Headers », sinon
+#    Cloudflare impose sa propre durée par-dessus, quoi qu'on écrive ici.
+#
+# Les en-têtes ne s'appliquent pas aux réponses des Pages Functions : le point de
+# terminaison /api/lead n'est donc pas concerné, ses en-têtes sont définis dans
+# functions/api/lead.js.
 
 # --------------------------------------------------- script de consentement
-# Porte l'identifiant du pixel et le texte du bandeau : jamais mis en cache.
+# Porte l'identifiant du pixel et le texte du bandeau : jamais mis en cache
+# durablement, sinon une modification reste invisible plusieurs heures.
 /consent.js
   Cache-Control: public, max-age=0, must-revalidate
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
 
 # ------------------------------------------------------------------ pages
 # Revérifiées auprès du serveur avant affichage. Cloudflare renvoie un 304
@@ -46,12 +50,14 @@
   Cache-Control: public, max-age=0, must-revalidate
 
 # ---------------------------------------------------------------- statique
-# Images, polices et fichiers versionnés ajoutés plus tard : cache long.
+# Réservé aux fichiers versionnés ajoutés plus tard (images, polices).
+# Ne rien y placer qui puisse changer sans changer de nom.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# ---------------------------------------------------------------- par défaut
-# En dernier : s'applique à ce qui n'a pas été capté au-dessus.
+# ---------------------------------------------------------------- sécurité
+# S'applique à toutes les réponses. À ne pas redéclarer dans les blocs
+# ci-dessus, sous peine de doublons dans les en-têtes.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
