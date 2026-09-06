@@ -1,0 +1,48 @@
+# Règles de cache — ob-lepuy.fr
+# Fichier lu automatiquement par Cloudflare Pages. À déposer à la racine du dépôt.
+#
+# Principe : ce qui change (les pages, le script de consentement) est revalidé
+# à chaque visite ; ce qui ne change jamais est mis en cache longtemps.
+# Sans ces règles, un visiteur déjà venu peut continuer à voir l'ancienne
+# version d'une offre ou d'une date limite pendant plusieurs heures.
+
+# ---------------------------------------------------------------- par défaut
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+# ------------------------------------------------------------------ contenu
+# Les pages sont toujours revérifiées auprès du serveur avant affichage.
+# Cloudflare renvoie un 304 si rien n'a changé : aucun surcoût de chargement.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/mentions-legales
+  Cache-Control: public, max-age=0, must-revalidate
+
+/confidentialite
+  Cache-Control: public, max-age=0, must-revalidate
+
+/cgv
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Script de consentement : jamais mis en cache durablement.
+# C'est lui qui porte l'identifiant du pixel et le texte du bandeau.
+/consent.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+# ------------------------------------------------------------------- statique
+# Si des images, polices ou fichiers versionnés sont ajoutés plus tard,
+# ils peuvent être mis en cache longtemps sans risque.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# --------------------------------------------------------------------- API
+# La réponse du formulaire ne doit jamais être mise en cache.
+/api/*
+  Cache-Control: no-store
