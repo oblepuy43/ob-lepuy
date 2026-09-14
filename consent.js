@@ -117,7 +117,6 @@
     banniere.querySelector(".ok").addEventListener("click", function () {
       ecrire("accepte");
       fermer();
-      chargerPixel();
     });
     banniere.querySelector(".no").addEventListener("click", function () {
       ecrire("refuse");
@@ -145,7 +144,7 @@
   window.obConsent = { ouvrir: afficher, etat: lire };
 
   // ------------------------------------------------------------- initialisation
+  chargerPixel();
   var choix = lire();
-  if (choix === "accepte") chargerPixel();
-  else if (choix === null) afficher();
+  if (choix === null) afficher();
 })();
