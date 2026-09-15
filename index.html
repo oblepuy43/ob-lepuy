@@ -500,8 +500,9 @@ footer a:hover{color:#fff;text-decoration:underline}
           source:q.get('utm_source')||'direct',campagne:q.get('utm_campaign')||'',
           recu_le:new Date().toISOString()})});
       if(!r.ok) throw 0;
+      var data = await r.json().catch(function(){ return {}; });
       $('formInner').classList.add('hidden'); $('done').classList.remove('hidden');
-      if(window.fbq) fbq('track','Lead');
+      if(window.fbq) fbq('track','Lead',{},{eventID:data.metaEventId||undefined});
       $('done').scrollIntoView({block:'center'});
     }catch(e){ show($('e-send'),true); b.disabled=false; b.textContent="Je réserve mon offre"; }
   });
