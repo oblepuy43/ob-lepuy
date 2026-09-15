@@ -10,6 +10,8 @@
  *   MAIL_TO            lorangebleue.lepuyenvelay@gmail.com
  *   SHEET_URL          URL du script Google Apps Script déployé
  *   SHEET_SECRET       mot de passe partagé avec le script Google (à créer comme "secret")
+ *   FB_PIXEL_ID        1471922334761207
+ *   FB_CAPI_TOKEN      token généré dans Événements Manager > API Conversions (à créer comme "secret")
  */
 
 const CORS = {
@@ -31,6 +33,13 @@ function clean(v, max = 120) {
 
 const isEmail = (v) => /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v);
 const isTel = (v) => v.replace(/[^\d+]/g, "").length >= 10;
+
+/** Hash SHA-256 requis par Meta pour email/téléphone (PII jamais envoyée en clair). */
+async function sha256Hex(v) {
+  const data = new TextEncoder().encode(v.trim().toLowerCase());
+  const buf = await crypto.subtle.digest("SHA-256", data);
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
 
 export async function onRequestPost({ request, env }) {
   let body;
@@ -64,20 +73,24 @@ export async function onRequestPost({ request, env }) {
   if (!isTel(lead.tel)) return ko("Téléphone invalide");
 
   // --- Envois en parallèle ------------------------------------------------
-  const [sheet, mail] = await Promise.allSettled([
+  const [sheet, mail, meta] = await Promise.allSettled([
     versSheet(lead, env),
     versEmail(lead, env),
+    versMeta(lead, request, env),
   ]);
 
   const sheetOk = sheet.status === "fulfilled";
   const mailOk = mail.status === "fulfilled";
+  const metaEventId = meta.status === "fulfilled" ? meta.value : null;
 
   if (!sheetOk) console.error("Sheet KO :", sheet.reason);
   if (!mailOk) console.error("Email KO :", mail.reason);
+  if (!metaEventId) console.error("Meta CAPI KO :", meta.reason);
 
-  // Tant qu'un des deux canaux a fonctionné, le lead n'est pas perdu :
+  // Tant qu'un des deux canaux principaux a fonctionné, le lead n'est pas perdu :
   // on confirme au visiteur plutôt que de lui faire ressaisir le formulaire.
-  if (sheetOk || mailOk) return ok({ ok: true, sheet: sheetOk, mail: mailOk });
+  // La CAPI est un bonus de tracking, jamais bloquant pour la confirmation.
+  if (sheetOk || mailOk) return ok({ ok: true, sheet: sheetOk, mail: mailOk, metaEventId });
   return ko("Enregistrement impossible", 502);
 }
 
@@ -145,6 +158,47 @@ async function versEmail(lead, env) {
 
   if (!r.ok) throw new Error("Resend HTTP " + r.status + " " + (await r.text()));
   return true;
+}
+
+/** Envoi côté serveur à l'API Conversions Meta — événement Lead. */
+async function versMeta(lead, request, env) {
+  if (!env.FB_CAPI_TOKEN || !env.FB_PIXEL_ID) throw new Error("FB_CAPI_TOKEN/FB_PIXEL_ID absente(s)");
+
+  const eventId = crypto.randomUUID();
+  const cookies = request.headers.get("Cookie") || "";
+  const fbp = cookies.match(/_fbp=([^;]+)/)?.[1];
+  const fbc = cookies.match(/_fbc=([^;]+)/)?.[1];
+
+  const userData = {
+    client_ip_address: request.headers.get("CF-Connecting-IP"),
+    client_user_agent: request.headers.get("User-Agent"),
+    em: [await sha256Hex(lead.email)],
+    ph: [await sha256Hex(lead.tel.replace(/\D/g, ""))],
+  };
+  if (fbp) userData.fbp = fbp;
+  if (fbc) userData.fbc = fbc;
+
+  const payload = {
+    data: [
+      {
+        event_name: "Lead",
+        event_time: Math.floor(Date.now() / 1000),
+        event_id: eventId,
+        event_source_url: "https://ob-lepuy.fr/",
+        action_source: "website",
+        user_data: userData,
+      },
+    ],
+    access_token: env.FB_CAPI_TOKEN,
+  };
+
+  const r = await fetch(`https://graph.facebook.com/v21.0/${env.FB_PIXEL_ID}/events`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!r.ok) throw new Error("Meta CAPI HTTP " + r.status + " " + (await r.text()));
+  return eventId;
 }
 
 /** Toute autre méthode que POST est refusée. */
