@@ -62,6 +62,7 @@ export async function onRequestPost({ request, env }) {
     email: clean(body.email, 120).toLowerCase(),
     tel: clean(body.tel, 30),
     offre: clean(body.offre, 80),
+    objectif: clean(body.objectif, 60),
     source: clean(body.source, 60),
     campagne: clean(body.campagne, 80),
     recu_le: new Date().toISOString(),
@@ -123,6 +124,7 @@ async function versEmail(lead, env) {
       ${l("Nom", lead.nom)}
       ${l("Email", `<a href="mailto:${lead.email}">${lead.email}</a>`)}
       ${l("Téléphone", `<a href="tel:${lead.tel.replace(/\s/g, "")}">${lead.tel}</a>`)}
+      ${l("Objectif", lead.objectif)}
       ${l("Source", lead.source)}
       ${l("Campagne", lead.campagne)}
       ${l("Reçu le", new Date(lead.recu_le).toLocaleString("fr-FR", { timeZone: "Europe/Paris" }))}
@@ -137,6 +139,7 @@ async function versEmail(lead, env) {
     `${lead.prenom} ${lead.nom}`,
     `Email : ${lead.email}`,
     `Téléphone : ${lead.tel}`,
+    `Objectif : ${lead.objectif || "—"}`,
     `Source : ${lead.source} / ${lead.campagne}`,
   ].join("\n");
 
@@ -150,7 +153,7 @@ async function versEmail(lead, env) {
       from: env.MAIL_FROM,
       to: [env.MAIL_TO],
       reply_to: lead.email,
-      subject: `Lead — ${lead.prenom} ${lead.nom}`,
+      subject: `Lead — ${lead.prenom} ${lead.nom}` + (lead.objectif ? ` · ${lead.objectif}` : ""),
       html,
       text: texte,
     }),
