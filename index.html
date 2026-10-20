@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>L'Orange bleue Le Puy-en-Velay — jusqu'à 90 € offerts</title>
-<meta name="description" content="Salle de sport au Puy-en-Velay. Jusqu'à 90 € offerts sur ton abonnement, jusqu'au 19 octobre. Séance d'essai gratuite. Accès 24h/24h, cours collectifs, sauna, accès terrasse & café inclus.">
+<title>L'Orange bleue Le Puy-en-Velay — séance d'essai gratuite</title>
+<meta name="description" content="Salle de sport au Puy-en-Velay. Séance d'essai gratuite et sans engagement. Accès 24h/24h, cours collectifs, sauna, accès terrasse & café inclus.">
 <link rel="preload" as="image" href="img/hero-plateau.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,6 +150,8 @@ figcaption{font-family:var(--display);text-transform:uppercase;letter-spacing:.1
 .countdown-lg{font-size:clamp(1.25rem,3.4vw,1.7rem);letter-spacing:.05em;color:var(--campagne);font-weight:700;margin-top:28px}
 .offer-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:20px}
 
+.no-offer{display:inline-block;margin-top:18px;font-size:.82rem;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:7px 12px;background:#fff}
+
 /* PREUVE */
 .proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
 .proof-in{display:grid;grid-template-columns:repeat(3,1fr)}
@@ -294,10 +296,9 @@ footer a:hover{color:#fff;text-decoration:underline}
 <header>
   <div class="wrap hd">
     <img src="img/logo.webp" width="520" height="240" alt="L'Orange bleue Le Puy-en-Velay">
-    <div class="hd-offer"><span>Offre d'automne</span><i class="sep"> — </i><span>jusqu'au 19 octobre</span><b class="countdown hd-count" data-deadline="2026-10-19T23:59:59" data-short></b></div>
+    <div class="hd-offer"><span>Salle accessible</span><i class="sep"> — </i><span>24h/24, 7j/7</span></div>
     <div class="hd-cta">
-      <button type="button" class="btn" data-open-modal>Profiter de l'offre</button>
-      <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" class="btn btn-white" data-essai aria-label="Réserver une séance d'essai gratuite">Essai gratuit</a>
+      <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" class="btn btn-white" data-essai aria-label="Réserver une séance d'essai gratuite">Séance d'essai gratuite</a>
     </div>
   </div>
 </header>
@@ -306,12 +307,11 @@ footer a:hover{color:#fff;text-decoration:underline}
 <section class="hero">
   <div class="wrap hero-grid">
     <div>
-      <h1><span class="pre">Jusqu'à</span><span class="big"><span class="hl">90&nbsp;€</span> offerts</span></h1>
-      <p class="lede">90&nbsp;€ offerts sur la formule PRIME, 45&nbsp;€ sur la BOOST. Des coachs présents sur le plateau, un programme construit pour toi et une salle accessible 24h/24.</p>
-      <div class="countdown countdown-hero" data-deadline="2026-10-19T23:59:59"></div>
-      <div class="hero-cta" id="heroCta">
-        <button type="button" class="btn btn-main" data-open-modal>Profiter de l'offre</button>
-        <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" class="btn btn-ghost" data-essai>Séance d'essai gratuite</a>
+      <h1><span class="pre">Séance d'essai</span><span class="big"><span class="hl">gratuite</span></span></h1>
+      <p class="lede">Viens tester la salle : un coach t'accueille, te fait visiter et répond à tes questions. Gratuit et sans engagement. Des coachs présents sur le plateau, un programme construit pour toi et une salle accessible 24h/24.</p>
+      <p class="no-offer">Aucune offre promotionnelle en cours pour le moment.</p>
+      <div class="hero-cta" id="heroCta" style="margin-top:22px!important">
+        <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" class="btn btn-main" data-essai>Réserver ma séance d'essai</a>
       </div>
       <div class="g-badge">
         <span class="stars" aria-hidden="true">★★★★★</span>
@@ -414,28 +414,6 @@ footer a:hover{color:#fff;text-decoration:underline}
   </div>
 </section>
 
-<!-- RESERVATION -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="offer-card">
-      <h2 style="color:var(--campagne)">Je réserve mon offre</h2>
-
-      <div class="breakdown">
-        <div class="bd"><span class="tag">Engagement 2 ans</span><div class="lab">Formule Prime</div><div class="v">90&nbsp;€ offerts</div><div class="price"><strong>puis 45&nbsp;€ / 4 semaines</strong>soit 1,61&nbsp;€ par jour<span class="ce">40&nbsp;€ / 4 semaines pour les étudiants et CE</span></div><ul><li>Existe aussi en engagement 1 an</li><li>Programmes d'entraînement personnalisés illimités</li><li>4 bilans forme &amp; analyse corporelle</li><li>8 semaines de pause abo disponibles</li><li>−10&nbsp;% sur le shop</li><li>Suivi nutrition et recettes</li><li>Invite un ami 1 fois/mois</li></ul></div>
-        <div class="bd"><span class="tag">Engagement 1 an</span><div class="lab">Formule Boost</div><div class="v">45&nbsp;€ offerts</div><div class="price"><strong>puis 45&nbsp;€ / 4 semaines</strong>soit 1,61&nbsp;€ par jour<span class="ce">40&nbsp;€ / 4 semaines pour les étudiants et CE</span></div><ul><li>Jusqu'à 4 programmes d'entraînement personnalisés</li><li>1 bilan forme &amp; analyse corporelle</li><li>20&nbsp;€ de réduction au shop</li><li>Invite un ami 1 fois/mois</li></ul></div>
-      </div>
-
-      <p class="fine" style="font-size:.84rem">Frais d'adhésion de 60&nbsp;€ à régler à l'inscription.</p>
-
-      <div class="countdown countdown-lg" data-deadline="2026-10-19T23:59:59"></div>
-      <div class="offer-cta">
-        <button type="button" class="btn btn-main" data-open-modal>Profiter de l'offre</button>
-        <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" class="btn btn-ghost" data-essai>Séance d'essai gratuite</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- SEANCE D'ESSAI -->
 <section style="padding-top:0" id="essai">
   <div class="wrap">
@@ -459,15 +437,12 @@ footer a:hover{color:#fff;text-decoration:underline}
     </div>
     <div class="faq-list">
       <details><summary>Je suis totalement débutant, est-ce un problème ?</summary><p>Non, c'est même le cas de figure où l'accompagnement sert le plus. On commence par un bilan forme et santé, puis on construit ton premier programme. Un coach te montre chaque exercice avant de te laisser en autonomie.</p></details>
-      <details><summary>Comment profiter de l'offre ?</summary><p>Clique sur « Profiter de l'offre » et laisse tes coordonnées. On te répond par mail dans les 24h avec les modalités d'inscription. L'inscription se finalise ensuite en salle, avec la réduction appliquée.</p></details>
       <details><summary>Les coachs sont-ils présents à toute heure ?</summary><p>Non. La salle est accessible 24h/24, mais l'accueil et l'encadrement sont assurés de 9h30 à 20h les lundi, mardi, jeudi et vendredi, de 17h à 20h le mercredi et de 9h30 à 12h30 le samedi. En dehors de ces créneaux, l'accès reste libre pour t'entraîner en autonomie avec ton programme.</p></details>
       <details><summary>Comment se passe la séance d'essai ?</summary><p>Tu réserves ton créneau en ligne. Un coach t'accueille, te fait visiter la salle et répond à tes questions. La séance est gratuite et sans engagement. <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" data-essai>Réserver une séance d'essai</a></p></details>
       <details><summary>Y a-t-il une formule étudiante et/ou CE ?</summary><p>Absolument : les frais d'inscription sont offerts et nous appliquons une réduction de 5€ sur les prélèvements quelle que soit l'offre choisie sur présentation d'un justificatif étudiant en cours de validité ou CE partenaire / carte GCEBP43.</p></details>
-      <!-- À METTRE À JOUR À CHAQUE OFFRE -->
-      <details><summary>Quelle est la durée d'engagement ?</summary><p>Avec l'offre, la formule PRIME est souscrite sur 26 périodes de 4 semaines (2 ans), au tarif de 45 € par période — soit le prix du BOOST. La formule BOOST est souscrite sur 13 périodes (1 an). Au terme de l'engagement, l'abonnement continue sans nouvelle période ferme et reste résiliable à tout moment avec un préavis de 4 semaines.</p></details>
       <details><summary>Et en cas de problème médical ?</summary><p>Sur présentation d'un certificat médical d'inaptitude temporaire, ton abonnement est reporté d'une durée équivalente à celle de l'arrêt. Tu ne perds aucune période : elles sont décalées à la fin de ton engagement.</p></details>
       <details><summary>Et si je déménage en cours d'abonnement ?</summary><p>Si tu déménages à plus de 20 km de tout club l'Orange bleue, on met fin à ton abonnement de manière anticipée sur présentation d'un justificatif de nouvelle adresse. Que le déménagement soit professionnel ou personnel : c'est un engagement du club.</p></details>
-      <details><summary>Et les autres formules ?</summary><p>Cette page présente l'offre en cours sur les formules PRIME et BOOST. La formule START, sans programme personnalisé, reste disponible à 35&nbsp;€ / 4 semaines : on t'en présente les conditions en salle. Offre Family : pour 2 abonnements souscrits par 2 membres d'une même famille, 1 frais d'adhésion offert.</p></details>
+      <details><summary>Quelles sont les formules ?</summary><p>Trois formules : START, BOOST et PRIME. On te les présente en détail en salle, lors de ta séance d'essai, pour choisir celle qui colle à tes objectifs. Offre Family : pour 2 abonnements souscrits par 2 membres d'une même famille, 1 frais d'adhésion offert.</p></details>
       <details><summary>Puis-je m'inscrire si je suis mineur ?</summary><p>Oui, à condition de venir accompagné de ton tuteur légal : l'attestation parentale doit être remplie et seul le tuteur peut signer le contrat. L'accès libre n'est en revanche pas disponible pour les mineurs.</p></details>
     </div>
   </div>
@@ -496,119 +471,19 @@ footer a:hover{color:#fff;text-decoration:underline}
       </div>
     </div>
     <div class="legal">
-      SARL Omushin — licencié de marque l'Orange bleue. Offre valable du 8 septembre au 19 octobre 2026 : 8 premières semaines offertes (soit 90 €) pour toute souscription d'une formule PRIME avec engagement de 26 périodes de 4 semaines, puis 45 € par période sur les 24 périodes suivantes ; 4 premières semaines offertes (soit 45 €) pour toute souscription d'une formule BOOST avec engagement de 13 périodes, puis 45 € par période sur les 12 périodes suivantes. Frais d'adhésion de 60 € à régler à l'inscription. Non cumulable avec une autre promotion. Tarifs en vigueur au 1<sup>er</sup> janvier 2026, susceptibles d'évoluer. Documentation non contractuelle.
+      SARL Omushin — licencié de marque l'Orange bleue. Tarifs en vigueur au 1<sup>er</sup> janvier 2026, susceptibles d'évoluer. Documentation non contractuelle.
     </div>
   </div>
 </footer>
 
-<dialog id="leadModal" aria-labelledby="leadModalTitle">
-  <div class="modal-box">
-    <button type="button" class="modal-close" id="modalClose" aria-label="Fermer">&times;</button>
-
-    <div id="formInner">
-      <div class="steps" aria-hidden="true"><i class="on"></i><i id="step2dot"></i></div>
-
-      <!-- ÉTAPE 1 : objectif -->
-      <div id="step1">
-        <div class="center" style="margin-bottom:20px">
-          <div class="eyebrow">Étape 1 sur 2</div>
-          <h2 id="leadModalTitle" tabindex="-1" style="margin-top:13px">Quel est ton objectif&nbsp;?</h2>
-        </div>
-        <div class="obj-grid">
-          <button type="button" class="obj" data-obj="Perdre du poids"><span class="obj-emoji" aria-hidden="true">🔥</span>Perdre du poids</button>
-          <button type="button" class="obj" data-obj="Me muscler"><span class="obj-emoji" aria-hidden="true">💪</span>Me muscler</button>
-          <button type="button" class="obj" data-obj="Me remettre en forme"><span class="obj-emoji" aria-hidden="true">⚡</span>Me remettre en forme</button>
-          <button type="button" class="obj" data-obj="Reprendre après une pause"><span class="obj-emoji" aria-hidden="true">🔄</span>Reprendre après une pause</button>
-        </div>
-      </div>
-
-      <!-- ÉTAPE 2 : coordonnées -->
-      <div id="step2" class="hidden">
-        <button type="button" class="back" id="back">← Modifier mon objectif</button>
-        <div class="center" style="margin-bottom:22px">
-          <div class="eyebrow">Étape 2 sur 2</div>
-          <h2 id="step2Title" tabindex="-1" style="margin-top:13px">Je réserve mon offre</h2>
-          <p class="sub">Réponse par mail dans les 24h avec les modalités d'inscription.</p>
-        </div>
-
-        <div style="text-align:left">
-          <div class="field-row">
-            <div class="field"><label for="prenom">Prénom</label>
-              <input type="text" id="prenom" autocomplete="given-name" required>
-              <div class="err" id="e-prenom">Indique ton prénom.</div></div>
-            <div class="field"><label for="nom">Nom</label>
-              <input type="text" id="nom" autocomplete="family-name" required>
-              <div class="err" id="e-nom">Indique ton nom.</div></div>
-          </div>
-          <div class="field"><label for="email">Email</label>
-            <input type="email" id="email" autocomplete="email" inputmode="email" required>
-            <div class="err" id="e-email">Indique une adresse email valide.</div></div>
-          <div class="field"><label for="tel">Téléphone</label>
-            <input type="tel" id="tel" autocomplete="tel" inputmode="tel" required>
-            <div class="err" id="e-tel">Indique un numéro de téléphone valide.</div></div>
-          <div class="hp" aria-hidden="true">
-            <label for="societe">Ne pas remplir ce champ</label>
-            <input type="text" id="societe" name="societe" tabindex="-1" autocomplete="off">
-          </div>
-          <p class="mention">En envoyant ce formulaire, tu acceptes d'être contacté par L'Orange bleue Le Puy-en-Velay au sujet de cette offre. Tes données ne sont utilisées que dans ce cadre. <a href="/confidentialite">Politique de confidentialité</a></p>
-          <button type="button" class="btn btn-wide" id="send" style="margin-top:4px">Je réserve mon offre</button>
-          <div class="err" id="e-send" style="text-align:center;margin-top:10px">L'envoi n'a pas abouti. Réessaie, ou écris-nous à lorangebleue.lepuyenvelay@gmail.com</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="done" class="ok hidden">
-      <h3>C'est enregistré</h3>
-      <p>Tu recevras un mail dans les 24h avec les modalités d'inscription. Pense à vérifier tes spams si tu ne vois rien arriver.</p>
-    </div>
-  </div>
-</dialog>
-
 <!-- BARRE CTA MOBILE -->
 <div class="mbar" id="mbar">
-  <button type="button" class="btn btn-main" data-open-modal>Profiter de l'offre</button>
-  <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" class="btn btn-ghost" data-essai>Essai gratuit</a>
+  <a href="https://checkout.moresports.io/4009421/checkout/l_orange_bleue/trial-session/1216903430" class="btn btn-main" data-essai>Réserver ma séance d'essai</a>
 </div>
 
 <script>
 (function(){
-  var ENDPOINT = "/api/lead";
-  var T0 = Date.now();
-  var Q = new URLSearchParams(location.search);
   var $=function(i){return document.getElementById(i)};
-  function show(e,o){e.classList.toggle('show',o)}
-
-  document.querySelectorAll('.countdown').forEach(function(cd){
-    var d=Math.ceil((new Date(cd.dataset.deadline).getTime()-Date.now())/864e5);
-    var sfx = ('short' in cd.dataset) ? "" : " pour en profiter";
-    cd.textContent = d>1 ? "Plus que "+d+" jours"+sfx : d===1 ? "Dernier jour"+sfx : "";
-  });
-
-  var modal = $('leadModal');
-  var scrollY = 0;
-
-  function openModal(trigger){
-    scrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.top = '-' + scrollY + 'px';
-    document.body.style.width = '100%';
-    modal._trigger = trigger || null;
-    resetSteps();
-    modal.showModal();
-    $('leadModalTitle').focus();
-  }
-
-  modal.addEventListener('close', function(){
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.width = '';
-    window.scrollTo({top: scrollY, left: 0, behavior: 'instant'});
-    if(modal._trigger) modal._trigger.focus();
-  });
-
-  document.querySelectorAll('[data-open-modal]').forEach(function(btn){
-    btn.addEventListener('click', function(){ openModal(btn); });
-  });
 
   // Barre mobile : visible dès que les CTA du hero sortent de l'écran
   var mbar=$('mbar'), hc=$('heroCta');
@@ -639,24 +514,6 @@ footer a:hover{color:#fff;text-decoration:underline}
     b[0].classList.add('on'); arm();
   })();
 
-  // Formulaire en 2 étapes : objectif puis coordonnées
-  var OBJ='';
-  function resetSteps(){
-    if(!$('done').classList.contains('hidden')) return;
-    OBJ=''; $('step1').classList.remove('hidden'); $('step2').classList.add('hidden'); $('step2dot').classList.remove('on');
-  }
-  document.querySelectorAll('[data-obj]').forEach(function(o){
-    o.addEventListener('click',function(){
-      OBJ=o.dataset.obj;
-      $('step1').classList.add('hidden'); $('step2').classList.remove('hidden'); $('step2dot').classList.add('on');
-      $('step2Title').focus();
-    });
-  });
-  $('back').addEventListener('click',function(){
-    $('step2').classList.add('hidden'); $('step1').classList.remove('hidden'); $('step2dot').classList.remove('on');
-    $('leadModalTitle').focus();
-  });
-
   // Planning : agrandi en surimpression sur la page ; clic hors de l'image, bouton ou Échap pour fermer
   document.querySelectorAll('[data-planning]').forEach(function(a){
     a.addEventListener('click',function(e){
@@ -674,8 +531,6 @@ footer a:hover{color:#fff;text-decoration:underline}
     });
   });
 
-  $('modalClose').addEventListener('click', function(){ modal.close(); });
-
   // Séance d'essai : événement Meta distinct du lead (ne touche pas à OB_LP_Inscription_v2)
   document.querySelectorAll('[data-essai]').forEach(function(a){
     a.addEventListener('click', function(e){
@@ -687,30 +542,6 @@ footer a:hover{color:#fff;text-decoration:underline}
     });
   });
 
-  modal.addEventListener('click', function(e){
-    if(e.target === modal) modal.close();
-  });
-
-  $('send').addEventListener('click',async function(){
-    var p=$('prenom').value.trim(), n=$('nom').value.trim();
-    var tel=$('tel').value.replace(/[^\d+]/g,''), email=$('email').value.trim();
-    var t=tel.length>=10, m=/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email);
-    show($('e-prenom'),!p); show($('e-nom'),!n); show($('e-email'),!m); show($('e-tel'),!t); show($('e-send'),false);
-    if(!p||!n||!t||!m) return;
-    var b=this; b.disabled=true; b.textContent="Envoi…";
-    try{
-      var r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({prenom:p,nom:n,
-          email:email,tel:$('tel').value.trim(),offre:'AUTOMNE26 semaines offertes',objectif:OBJ,
-          societe:$('societe').value,duree_ms:Date.now()-T0,
-          source:Q.get('utm_source')||'direct',campagne:Q.get('utm_campaign')||'',
-          recu_le:new Date().toISOString()})});
-      if(!r.ok) throw 0;
-      var data = await r.json().catch(function(){ return {}; });
-      $('formInner').classList.add('hidden'); $('done').classList.remove('hidden');
-      if(window.fbq) fbq('track','Lead',{},{eventID:data.metaEventId||undefined});
-    }catch(e){ show($('e-send'),true); b.disabled=false; b.textContent="Je réserve mon offre"; }
-  });
 })();
 </script>
 <script src="/consent.js" defer></script>
